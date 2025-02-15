@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "e52f4e79-1dbf-40e4-9e8b-2043403ea0a6",
+		"name": "Drone API request collections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42345360"
+	},
+	"item": [
+		{
+			"name": "Success Path",
+			"item": [
+				{
+					"name": "register drone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serialNumber\" : 12345678901234567890,\r\n    \"model\" : \"LIGHTWEIGHT\",\r\n    \"batteryCapacity\" : 90.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/drone/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"drone",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "load medication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"droneSerialNumber\" : 12345678901234567890,\r\n    \"medication\" : {\r\n        \"name\": \"Biogesic\",\r\n        \"weight\": 18.0,\r\n        \"code\" : \"U042P050520BS\",\r\n        \"imageURL\" : \"https://nhathuocviet.vn/data/items/3817/pantoloc-20mg-1.jpg\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/drone/load-medication",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"drone",
+								"load-medication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "battery request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/drone/drone-Battery/12345678901234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"drone",
+								"drone-Battery",
+								"12345678901234567890"
+							],
+							"query": [
+								{
+									"key": "serial",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "drone-availability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/drone/drone-availability/12345678901234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"drone",
+								"drone-availability",
+								"12345678901234567890"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "drone med load",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/drone/drone-load/12345678901234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"drone",
+								"drone-load",
+								"12345678901234567890"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fail Path",
+			"item": [
+				{
+					"name": "load medication",
+					"item": [
+						{
+							"name": "load medication overcapacity error",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"droneSerialNumber\" : 12345678901234567890,\r\n    \"medication\" : {\r\n        \"name\": \"Paktal123\",\r\n        \"weight\": 2000,\r\n        \"code\" : \"BIO\",\r\n        \"imageURL\" : \"https://nhathuocviet.vn/data/items/3817/pantoloc-20mg-1.jpg\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8085/drone/load-medication",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"drone",
+										"load-medication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "load medication code error",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"droneSerialNumber\" : 12345678901234567890,\r\n    \"medication\" : {\r\n        \"name\": \"Biogesic\",\r\n        \"weight\": 100.0,\r\n        \"code\" : \"U042P050520BSaaa\",\r\n        \"imageURL\" : \"https://nhathuocviet.vn/data/items/3817/pantoloc-20mg-1.jpg\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8085/drone/load-medication",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"drone",
+										"load-medication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "load medication Invalid name",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"droneSerialNumber\" : 12345678901234567890,\r\n    \"medication\" : {\r\n        \"name\": \"@Biogesic\",\r\n        \"weight\": 100.0,\r\n        \"code\" : \"U042P050520BS\",\r\n        \"imageURL\" : \"https://nhathuocviet.vn/data/items/3817/pantoloc-20mg-1.jpg\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8085/drone/load-medication",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"drone",
+										"load-medication"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "load medication missingfields",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"droneSerialNumber\" : 12345678901234567890,\r\n    \"medication\" : {\r\n        \"name\": \"Biogesic\",\r\n        \"weight\": 100.0,\r\n        \"code\" : \"U042P050520BS\",\r\n        \"imageURL\" : null\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8085/drone/load-medication",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"drone",
+										"load-medication"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "drone register error",
+					"item": [
+						{
+							"name": "drone serial already exist",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ //press send twice\r\n    \"serialNumber\" : 8987654321234567890,\r\n    \"model\" : \"CRUISERWEIGHT\",\r\n    \"batteryCapacity\" : 90.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8085/drone/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"drone",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "register drone serial number error",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"serialNumber\" : 1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890901234567890,\r\n    \"model\" : \"CRUISERWEIGHT\",\r\n    \"batteryCapacity\" : 90.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8085/drone/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"drone",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "register drone model error",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"serialNumber\" : 1987654341,\r\n    \"model\" : \"WEIGHT\",\r\n    \"batteryCapacity\" : 90.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8085/drone/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"drone",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "register drone battery capacity error",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"serialNumber\" : 12345678901234567890123456789012345678901234567012345678901234567890123456789012345089786,\r\n    \"model\" : \"LIGHTWEIGHT\",\r\n    \"batteryCapacity\" : 190.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8085/drone/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8085",
+									"path": [
+										"drone",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "drone not found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/drone/drone-Battery/1111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"drone",
+								"drone-Battery",
+								"1111111"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
